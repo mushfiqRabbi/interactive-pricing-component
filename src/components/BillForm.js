@@ -13,7 +13,9 @@ export default function BillForm() {
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(
-        `http://localhost:5000/ipc/${Number(sliderVal)}?yearly=${isYearly}`
+        `https://generic-server-xuof.onrender.com/ipc/${Number(
+          sliderVal
+        )}?yearly=${isYearly}`
       );
       const data = await res.json();
       setViews(data.views);
