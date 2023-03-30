@@ -11,17 +11,20 @@ export default function BillForm() {
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
-    const getData = async () => {
-      const res = await fetch(
-        `https://generic-server-xuof.onrender.com/ipc/${Number(
-          sliderVal
-        )}?yearly=${isYearly}`
-      );
-      const data = await res.json();
-      setViews(data.views);
-      setAmount(data.amount);
-    };
-    getData();
+    const slideTimer = setTimeout(() => {
+      const getData = async () => {
+        const res = await fetch(
+          `https://generic-server-xuof.onrender.com/ipc/${Number(
+            sliderVal
+          )}?yearly=${isYearly}`
+        );
+        const data = await res.json();
+        setViews(data.views);
+        setAmount(data.amount);
+      };
+      getData();
+    }, 300);
+    return () => clearTimeout(slideTimer);
   }, [sliderVal, isYearly]);
 
   return (
